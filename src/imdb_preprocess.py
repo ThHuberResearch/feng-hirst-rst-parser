@@ -50,4 +50,5 @@ def add_space_after_sentence(doc_str):
 
 if __name__ == "__main__":
     print ("Assume IMDB is downloaded from https://ai.stanford.edu/~amaas/data/sentiment, and extracted to ../texts/IMDB/aclImdb, where the train/test folders are at ../texts/IMDB/aclImdb/{train, test} directories.")
+
     preprocess_imdb()

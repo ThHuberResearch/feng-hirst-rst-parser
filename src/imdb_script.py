@@ -9,7 +9,11 @@ import argparse
 def parse_imdb(choice):
     src_dir = "../texts/IMDB/preprocessed/{}"
 
-    log_dir = "imdb_log_{}.log".format(choice)
+    log_dir = "imdb_failed_{}.log".format(choice)
+    choice = choice.replace("_", "/")
+    assert choice in [
+        "test/pos", "test/neg", "train/pos", "train_neg"], "Illegal choice of data fold: {}".format(choice)
+
     if os.path.exists(log_dir):
         os.remove(log_dir)
     flog = open(log_dir, "a+")
@@ -43,9 +47,4 @@ if __name__ == "__main__":
     agp = argparse.ArgumentParser()
     agp.add_argument('--choice', type=str, default='train_pos')
     args = agp.parse_args()
-
-    args.choice = args.choice.replace("_", "/")
-    assert args.choice in [
-        "test/pos", "test/neg", "train/pos", "train_neg"], "Illegal choice of data fold: {}".format(args.choice)
-
     parse_imdb(args.choice)

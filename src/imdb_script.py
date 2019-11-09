@@ -41,9 +41,10 @@ def parse_imdb(choice):
 
 if __name__ == "__main__":
     agp = argparse.ArgumentParser()
-    agp.add_argument('--choice', type=str, default='train/pos_0')
+    agp.add_argument('--choice', type=str, default='train_pos')
     args = agp.parse_args()
 
+    args.choice = args.choice.replace("_", "/")
     assert args.choice in [
         "test/pos", "test/neg", "train/pos", "train_neg"], "Illegal choice of data fold: {}".format(args.choice)
 

@@ -12,7 +12,7 @@ def parse_imdb(choice):
     log_dir = "imdb_failed_{}.log".format(choice)
     choice = choice.replace("_", "/")
     assert choice in [
-        "test/pos", "test/neg", "train/pos", "train_neg"], "Illegal choice of data fold: {}".format(choice)
+        "test/pos", "test/neg", "train/pos", "train/neg"], "Illegal choice of data fold: {}".format(choice)
 
     if os.path.exists(log_dir):
         os.remove(log_dir)

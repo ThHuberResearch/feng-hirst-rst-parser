@@ -1,9 +1,5 @@
 ## DEVELOPERS
-* Vanessa Wei Feng
-  Department of Computer Science
-  University of Toronto
-  Canada
-  mailto:weifeng@cs.toronto.edu
+* Original author: [Vanessa Wei Feng](mailto:weifeng@cs.toronto.edu), Department of Computer Science, University of Toronto, Canada  
 * [Arne Neumann](mailto:github+spam.or.ham@arne.cl) updated it to use nltk 3.4 on [this github repo](https://github.com/arne-cl/feng-hirst-rst-parser), and created a Dockerfile.  
 * [Zining Zhu](mailto:zining@cs.toronto.edu) updated the scripts to use Python 3.
 
@@ -40,7 +36,7 @@ In order to run the software, you need to have the following components:
 
 
 ### SETUP CRFSUITE
-The $gCRF_ROOT$ symbol in the commands below stands for the root directory of gCRF (`feng-hirst-rst-parser`).
+The $gCRF_ROOT$ symbol in the commands below stands for the root directory of `feng-hirst-rst-parser`.
 
 1. Test if the binary file of CRFsuite-stdin is ready for use, by executing the following two commands:  
 ```
@@ -132,4 +128,4 @@ Options:
 
 
 ## BUGS AND COMMENTS
-If you encounter and bugs using the program, please report the exception thrown by the program and the specific text file(s) you used for parsing, to weifeng@cs.toronto.edu. General comments about the program and the results are also welcome!
+If you encounter and bugs using the program, please report the exception thrown by the program and the specific text file(s) you used for parsing, to zining@cs.toronto.edu. General comments about the program and the results are also welcome!

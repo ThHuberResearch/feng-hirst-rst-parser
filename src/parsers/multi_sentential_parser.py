@@ -149,7 +149,7 @@ class MultiSententialParser(BaseParser):
 #            print 'k', k, len(doc.constituent_scores)
             doc.constituent_scores[k] = bin_score
         
-        for k in range(i + 2, min(len(doc.constituents) - 1, i + 2 + (self.window_size - 1)/2 + s_len)):
+        for k in range(i + 2, min(len(doc.constituents) - 1, i + 2 + (self.window_size - 1)//2 + s_len)):
             bin_score = self.classify_pair(doc, k - 1)
             
 #            print 'k', k, len(doc.constituent_scores)

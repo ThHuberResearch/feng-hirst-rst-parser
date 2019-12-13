@@ -32,7 +32,7 @@ class Preprocesser:
         if len(raw_sent.split()) <= self.max_sentence_len:
             return [raw_sent]
   
-        i = len(raw_sent) / 2
+        i = len(raw_sent) // 2
         j = i
         k = i + 1
         boundaries = [';', ':', '!', '?']

@@ -1,0 +1,47 @@
+(Elaboration[N][S]
+  (Elaboration[N][S]
+    (Elaboration[N][S]
+      (Elaboration[N][S]
+        (Temporal[N][S]
+          _!I went and saw this movie last night!_
+          _!after being coaxed to by a few friends of mine . <s>!_)
+        (Attribution[S][N]
+          _!I 'll admit!_
+          (Attribution[S][N]
+            _!that I was reluctant to see it because from what I knew!_
+            _!of Ashton Kutcher he was only able to do comedy . <s>!_)))
+      _!I was wrong . <s>!_)
+    (Joint[N][N]
+      _!Kutcher played the character of Jake Fischer very well ,!_
+      _!and Kevin Costner played Ben Randall with such professionalism . <s>!_))
+  (Explanation[N][S]
+    (Attribution[S][N]
+      _!The sign of a good movie is!_
+      _!that it can toy with our emotions . <s>!_)
+    (Elaboration[N][S]
+      _!This one did exactly that . <s>!_
+      (Elaboration[N][S]
+        (Joint[N][N]
+          (same-unit[N][N]
+            (Elaboration[N][S]
+              _!The entire theater!_
+              _!( which was sold out )!_)
+            (Elaboration[N][S]
+              _!was!_
+              _!overcome by laughter during the first half of the movie ,!_))
+          _!and were moved to tears during the second half . <s>!_)
+        (Elaboration[N][S]
+          (Contrast[S][N]
+            _!While exiting the theater I not only saw many women in tears ,!_
+            (same-unit[N][N]
+              (Elaboration[N][S]
+                _!but many full grown men as well ,!_
+                _!trying desperately not to let anyone!_)
+              _!see them crying . <s>!_))
+          (Joint[N][N]
+            _!This movie was great ,!_
+            (Attribution[S][N]
+              _!and I suggest!_
+              (Temporal[N][S]
+                _!that you go see it!_
+                _!before you judge . <P>!_))))))))

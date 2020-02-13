@@ -1,0 +1,63 @@
+(Explanation[N][S]
+  _!The finest short I 've ever seen . <s>!_
+  (Elaboration[N][S]
+    (Elaboration[N][S]
+      _!Some commentators suggest it might have been lengthened ,!_
+      (Elaboration[N][S]
+        _!due to the density of insight!_
+        _!it offers . <s>!_))
+    (Elaboration[N][S]
+      (Elaboration[N][S]
+        _!There 's irony in that comment and little merit . <s>!_
+        (Joint[N][N]
+          _!The acting is all up to Noonan!_
+          _!and he carries his thankless character perfectly . <s>!_))
+      (Elaboration[N][S]
+        (Contrast[S][N]
+          (Attribution[S][N]
+            _!I might have preferred!_
+            _!that the narrator be less " recognizable " ,!_)
+          (Attribution[S][N]
+            _!but the gravitas lent!_
+            _!is pitch perfect . <s>!_))
+        (Elaboration[N][S]
+          (Elaboration[N][S]
+            _!This is a short for people!_
+            (Elaboration[N][S]
+              _!who read , for those!_
+              (Elaboration[N][S]
+                _!whose " bar " is set high and for those!_
+                (Attribution[S][N]
+                  _!who recognize!_
+                  (same-unit[N][N]
+                    (Elaboration[N][S]
+                      _!that living in a culture!_
+                      _!that celebrates stupidity and banality!_)
+                    _!can forge contrary and bitter defenders of beauty . <s>!_)))))
+          (Elaboration[N][S]
+            _!A beautiful short film . <s>!_
+            (Elaboration[N][S]
+              (same-unit[N][N]
+                (Elaboration[N][S]
+                  _!FWIW :!_
+                  _!I was pleased at the Picasso reference ,!_)
+                (same-unit[N][N]
+                  (Attribution[S][N]
+                    _!since I once believed!_
+                    _!that Picasso was just another art whore with little talent ;!_)
+                  (same-unit[N][N]
+                    (Elaboration[N][S] _!like ,!_ _!I assume ,!_)
+                    (Elaboration[N][S]
+                      _!most people - until the day I saw some drawings!_
+                      (Attribution[S][N]
+                        _!he made!_
+                        _!when he was 12 . <s>!_)))))
+              (Elaboration[N][S]
+                (Elaboration[N][S]
+                  _!Picasso was a finer draftsman and a brilliant artist at that age!_
+                  _!than many artists will ever become in a lifetime . <s>!_)
+                (Attribution[S][N]
+                  _!I understood immediately!_
+                  (Elaboration[N][S]
+                    _!why he had to make the art!_
+                    _!he became known for . <P>!_))))))))))

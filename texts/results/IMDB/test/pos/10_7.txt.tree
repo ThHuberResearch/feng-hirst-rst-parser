@@ -1,0 +1,51 @@
+(Explanation[N][S]
+  (Contrast[S][N]
+    (Condition[S][N]
+      _!If you had asked me how the movie was throughout the film ,!_
+      (Attribution[S][N]
+        _!I would have told you!_
+        _!it was great ! <s>!_))
+    (Attribution[S][N]
+      _!However , I left!_
+      _!the theatre feeling unsatisfied . <s>!_))
+  (Elaboration[N][S]
+    (Elaboration[N][S]
+      (Elaboration[N][S]
+        (Elaboration[N][S]
+          (Elaboration[N][S]
+            (Background[S][N]
+              _!After thinking a little about it ,!_
+              (Attribution[S][N]
+                _!I believe!_
+                _!the problem was the pace of the ending . <s>!_))
+            (Joint[N][N]
+              (Attribution[S][N]
+                _!I feel!_
+                _!that the majority of the movie moved kind of slow ,!_)
+              _!and then the ending developed very fast . <s>!_))
+          (Elaboration[N][S]
+            _!So , I would say the ending!_
+            _!left me disappointed . <s>!_))
+        (Attribution[S][N]
+          _!I thought!_
+          _!that the characters were well developed . <s>!_))
+      (Contrast[N][S]
+        (Elaboration[N][S]
+          (Elaboration[N][S]
+            _!Costner and Kutcher both portrayed their roles very well . <s>!_
+            _!Yes ! <s>!_)
+          (Joint[N][N]
+            _!Ashton Kutcher can act ! <s>!_
+            (Elaboration[N][S]
+              _!Also , the different relationships between the characters seemed very real . <s>!_
+              (Attribution[S][N]
+                _!Furthermore , I thought!_
+                _!that the different plot lines were well developed . <s>!_))))
+        (same-unit[N][N]
+          _!Overall ,!_
+          (Joint[N][N]
+            _!it was a good movie!_
+            _!and I would recommend seeing it . <s>!_))))
+    (Contrast[N][N]
+      _!In conclusion : Good Characters , Great Plot , Poorly Written/Edited Ending . <s>!_
+      _!Still , Go See It !!! <P>!_)))

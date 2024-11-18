@@ -36,7 +36,7 @@ In order to run the software, you need to have the following components:
 
 
 ### SETUP CRFSUITE
-The $gCRF_ROOT$ symbol in the commands below stands for the root directory of `feng-hirst-rst-parser`.
+The `$gCRF_ROOT$` symbol in the commands below stands for the root directory of `feng-hirst-rst-parser`.
 
 1. Test if the binary file of CRFsuite-stdin is ready for use, by executing the following two commands:  
 ```

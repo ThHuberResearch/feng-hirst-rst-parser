@@ -1,29 +1,27 @@
-
-import sys
-import pickle
-import paths
 import os.path
+import pickle
+
+import paths
 
 save_suffix = ".dat"
 
-def saveData(filename, myobject, where = paths.save_folder, suffix = save_suffix):
-    fo = open(os.path.join(where, filename + suffix), "wb")
-    #print 'Saved serialized file to %s' % os.path.join(where, filename + suffix)
-    pickle.dump(myobject, fo, protocol = pickle.HIGHEST_PROTOCOL)
-    fo.close()
 
-def loadData(filename, where = paths.save_folder, suffix = save_suffix):
+def save_data(
+        filename: str,
+        myobject: object,
+        where: str = paths.save_folder,
+        suffix: str = save_suffix
+):
+    with open(os.path.join(where, filename + suffix), "wb") as fo:
+        pickle.dump(myobject, fo, protocol=pickle.HIGHEST_PROTOCOL)
+
+
+def load_data(
+        filename: str,
+        where: str = paths.save_folder,
+        suffix: str = save_suffix
+):
     data_file = os.path.join(where, filename + suffix)
-    try:
-        fo = open(data_file, "rb")
-    except IOError:
-        print ("Couldn't open data file: %s" % data_file)
-        return
-    try:
-        myobject = pickle.load(fo)
-    except:
-        fo.close()
-        print ("Unexpected error:", sys.exc_info()[0])
-        raise
-    fo.close()
-    return myobject
+
+    with open(data_file, "rb") as fo:
+        return pickle.load(fo)

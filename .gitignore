@@ -3,3 +3,5 @@ __pycache__
 
 texts/results/IMDB
 .idea
+src/debug.py
+example.txt

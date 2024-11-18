@@ -101,7 +101,7 @@ class DiscourseParser():
             serialized_doc_filename = os.path.join(self.output_dir, core_filename + '.doc.ser')
             doc = None
             if os.path.exists(serialized_doc_filename):
-                doc = utils.serialize.loadData(core_filename, self.output_dir, '.doc.ser')
+                doc = utils.serialize.load_data(core_filename, self.output_dir, '.doc.ser')
             
             if doc is None or not doc.preprocessed:   
                 preprocessStart = time.time()
@@ -115,7 +115,7 @@ class DiscourseParser():
                 
                 if self.save_preprocessed_doc:
                     print ('Saved preprocessed document data to %s.' % serialized_doc_filename)
-                    utils.serialize.saveData(core_filename, doc, self.output_dir, '.doc.ser')
+                    utils.serialize.save_data(core_filename, doc, self.output_dir, '.doc.ser')
                 
             else:
                 print ('Loaded saved serialized document data.')
@@ -152,7 +152,7 @@ class DiscourseParser():
                 self.log_writer.write('Finished segmentation in %.2f seconds. Segmented into %d EDUs.' % ((segEnd - segStart), len(doc.edus)))
                 if self.save_preprocessed_doc:
                     print ('Saved segmented document data to %s.' % serialized_doc_filename)
-                    utils.serialize.saveData(core_filename, doc, self.output_dir, '.doc.ser')
+                    utils.serialize.save_data(core_filename, doc, self.output_dir, '.doc.ser')
             else:
                 print ('Already segmented into %d EDUs.' % len(doc.edus))
             
@@ -229,7 +229,7 @@ class DiscourseParser():
                 
                 if self.save_preprocessed_doc:
                     print ('Saved fully processed document data to %s.' % serialized_doc_filename)
-                    utils.serialize.saveData(core_filename, doc, self.output_dir, '.doc.ser')
+                    utils.serialize.save_data(core_filename, doc, self.output_dir, '.doc.ser')
             
             print (' ')
         except Exception as e:

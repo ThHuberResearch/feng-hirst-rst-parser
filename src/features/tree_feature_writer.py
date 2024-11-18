@@ -12,7 +12,7 @@ class CRFTreeFeatureWriter:
         
         self.verbose = verbose
         
-        self.cue_phrases = utils.serialize.loadData('cue_phrases')
+        self.cue_phrases = utils.serialize.load_data('cue_phrases')
         if self.verbose:
             print ('Loaded %d cue phrases for CRF labeling' % len(self.cue_phrases))
         

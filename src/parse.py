@@ -167,6 +167,7 @@ class DiscourseParser:
             raise e
 
         try:
+            g = None
             ''' Step 2: build text-level discourse tree '''
             if self.skip_parsing:
                 outfname = os.path.join(self.output_dir, core_filename + ".edus")
@@ -210,6 +211,7 @@ class DiscourseParser:
                         result[leaf_position] = PARA_END_RE.sub('', edu_str)  # parse tree without escape symbols
 
                     out = pt.pformat()
+                    g = pt.to_networkx()
                     print(f'Output tree building result to {outfname}.')
                     with open(outfname, 'w') as f_o:
                         f_o.write(out)
@@ -221,7 +223,7 @@ class DiscourseParser:
             print(traceback.print_exc())
             raise e
         print('===================================================')
-        return result
+        return result, g
 
 
 def main(options, args):
@@ -289,7 +291,7 @@ def main(options, args):
             print('Parsing %s, progress: %.2f (%d out of %d)' % (filename, i * 100.0 / len(files), i, len(files)))
 
             try:
-                result = parser.parse(filename)
+                result, _g = parser.parse(filename)
                 results.append(result)
 
                 parser.log_writer.write('===================================================')

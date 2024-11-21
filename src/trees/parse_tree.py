@@ -67,23 +67,23 @@ class ParseTree(ParentedTree):
         if concept is None:
             concept = 'ROOT'
         label = self.label()
-        kind, first, second = label.split('[')
+        relation, first, second = label.split('[')
         first = first.split(']')[0]
         second = second.split(']')[0]
         node_id = uuid.uuid4()
-        g.add_node(node_id, concept=concept, text=label)
+        g.add_node(node_id, concept=concept, text=label, relation=relation)
         if parent is not None:
             g.add_edge(parent, node_id)
         if isinstance(self[0], ParseTree):
             self[0].to_networkx(g=g, parent=node_id, concept=first)
         else:
             leaf_id = uuid.uuid4()
-            g.add_node(leaf_id, concept=first, text=self[0])
+            g.add_node(leaf_id, concept=first, text=self[0], relation='Leaf')
             g.add_edge(node_id, leaf_id)
         if isinstance(self[1], ParseTree):
             self[1].to_networkx(g=g, parent=node_id, concept=second)
         else:
             leaf_id = uuid.uuid4()
-            g.add_node(leaf_id, concept=second, text=self[1])
+            g.add_node(leaf_id, concept=second, text=self[1], relation='Leaf')
             g.add_edge(node_id, leaf_id)
         return g

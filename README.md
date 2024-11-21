@@ -2,6 +2,7 @@
 * Original author: [Vanessa Wei Feng](mailto:weifeng@cs.toronto.edu), Department of Computer Science, University of Toronto, Canada  
 * [Arne Neumann](mailto:github+spam.or.ham@arne.cl) updated it to use nltk 3.4 on [this github repo](https://github.com/arne-cl/feng-hirst-rst-parser), and created a Dockerfile.  
 * [Zining Zhu](mailto:zining@cs.toronto.edu) updated the scripts to use Python 3.
+* Thomas Huber, Chair of Data Science and Natural Language Processing, University of St. Gallen, updated the scripts further and added the `networkx` functionality.
 
 ## TODO
 - [ ] update Dockerfile to use Python 3.
@@ -98,12 +99,12 @@ Options:
 1) To produce the discourse parse tree for a single file, do the following:  
         ```python parse.py -t test ../texts/wsj_0607.out```
 
-    If you omit the -t option, the result will be written to "$gCRF_ROOT$/texts/results", otherwise, it will create a sub-folder under "$gCRF_ROOT$/texts/results". So for the command above, the result "wsj_0607.out.tree" will appear in "$gCRF_ROOT$/texts/results/test/".
+    If you omit the -t option, the result will be written to `"$gCRF_ROOT$/texts/results"`, otherwise, it will create a sub-folder under `"$gCRF_ROOT$/texts/results"`. So for the command above, the result "wsj_0607.out.tree" will appear in `"$gCRF_ROOT$/texts/results/test/"`.
 
 2) To produce discourse parse trees for a batch of files, do the following, where filelist is the name of the file where you store the absolute path of each file that you wish to process (one file per line):
          python parse.py -tD test_batch filelist
 
-	 And the results will appear in "$gCRF_ROOT$/texts/results/test_batch/".
+	 And the results will appear in `"$gCRF_ROOT$/texts/results/test_batch/"`.
 
 3) To enable two-pass segmentation (see our arXiv paper), use the -g option, in conjunction with other options (if any). However, enabling this option would largely slow the segmentation, but with higher segmentation accuracy.
 
@@ -128,4 +129,4 @@ Options:
 
 
 ## BUGS AND COMMENTS
-If you encounter and bugs using the program, please report the exception thrown by the program and the specific text file(s) you used for parsing, to zining@cs.toronto.edu. General comments about the program and the results are also welcome!
+If you encounter and bugs using the program, please create an Issue on the [GitHub repo](https://github.com/ThHuberSG/feng-hirst-rst-parser).

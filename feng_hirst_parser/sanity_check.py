@@ -13,7 +13,7 @@ from prep.syntax_parser import SyntaxParser
 from classifiers.crf_classifier import CRFClassifier
 import traceback
 
-test_filename = '../texts/wsj_0607.out'
+test_filename = 'texts/wsj_0607.out'
 
 
 def check_ssplit():

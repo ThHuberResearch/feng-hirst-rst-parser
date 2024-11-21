@@ -24,7 +24,7 @@ def instances(fi):
                 item.append(crfsuite.Attribute(field))
             else:
             	# Weighted attribute
-                item.append(crfsuite.Attribute(field[:p], float(field[p+1:])))
+                item.append(crfsuite.Attribute(field[:p], float(field[p + 1:])))
 
         # Append the item to the item sequence.
         xseq.append(item)

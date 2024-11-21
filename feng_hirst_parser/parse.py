@@ -4,8 +4,8 @@ Created on 2014-01-17
 @author: Vanessa Wei Feng
 '''
 
-from segmenters.crf_segmenter import CRFSegmenter
-from treebuilder.build_tree_CRF import CRFTreeBuilder
+from .segmenters.crf_segmenter import CRFSegmenter
+from .treebuilder.build_tree_CRF import CRFTreeBuilder
 
 from optparse import OptionParser
 from copy import deepcopy
@@ -13,7 +13,7 @@ import paths
 import os.path
 import re
 import sys
-from document.doc import Document
+from .document.doc import Document
 import time
 import traceback
 from datetime import datetime

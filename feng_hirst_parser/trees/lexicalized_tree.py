@@ -1,4 +1,3 @@
-
 import string
 from nltk.tree import Tree
 from trees.parse_tree import ParseTree

@@ -1,13 +1,14 @@
-from types import SimpleNamespace
+import os
 
 import networkx as nx
 from matplotlib import pyplot as plt
 from networkx.drawing.nx_pydot import graphviz_layout
 
-from parse import DiscourseParser
-from trees.extract_metrics import extract_metrics, extract_relation_ngrams
+from .parse import DiscourseParser
+from .trees.extract_metrics import extract_metrics, extract_relation_ngrams
 
-if __name__ == '__main__':
+
+def demo():
     verbose = False
     skip_parsing = False
     file_list = []
@@ -21,7 +22,8 @@ if __name__ == '__main__':
         global_features,
         save_preprocessed
     )
-    _, G = parser.parse('example.txt')
+    current_file_dir = os.path.dirname(__file__)
+    _, G = parser.parse(os.path.join(current_file_dir, 'example.txt'))
     labels = {
         node: f"{data['concept']}\n{data.get('text', '')}"
         for node, data in G.nodes(data=True)
@@ -33,3 +35,7 @@ if __name__ == '__main__':
 
     metrics = extract_metrics(G, relation_ngrams=[(1, 2), (3, 4)])
     print(metrics)
+
+
+if __name__ == '__main__':
+    demo()

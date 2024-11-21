@@ -3,8 +3,8 @@ Created on 2014-01-11
 
 @author: Wei
 '''
-from features.segmenter_feature_writer import SegmenterFeatureWriter
-from classifiers.crf_classifier import CRFClassifier
+from ..features.segmenter_feature_writer import SegmenterFeatureWriter
+from ..classifiers.crf_classifier import CRFClassifier
 import paths
 import utils.utils
 from document.token import Token

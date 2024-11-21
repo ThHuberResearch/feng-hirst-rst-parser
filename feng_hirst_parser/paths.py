@@ -1,6 +1,6 @@
 import os.path
 
-ROOT_PATH = '/'.join(os.path.split(os.getcwd())[ : -1])
+ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 
 PARSED_TEXTS_PATH = os.path.join(ROOT_PATH, 'texts/parsed_texts/')

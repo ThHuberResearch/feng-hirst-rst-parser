@@ -1,4 +1,3 @@
-
 from parsers.base_parser import BaseParser
 from trees.parse_tree import ParseTree
 import utils.utils

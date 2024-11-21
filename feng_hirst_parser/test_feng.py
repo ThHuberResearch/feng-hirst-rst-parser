@@ -23,12 +23,12 @@ def parse_file(filepath):
 
 def test_feng_short():
     """The Feng/Hirst parser produces the expected output."""
-    result = parse_file('../texts/input_short.txt')
+    result = parse_file('texts/input_short.txt')
     assert result == EXPECTED_PARSETREE_SHORT
 
 def test_feng_long():
     """The Feng/Hirst parser produces the expected output."""
-    result = parse_file('../texts/input_long.txt')
+    result = parse_file('texts/input_long.txt')
     assert result == EXPECTED_PARSETREE_LONG
 
 def test_feng_fail():

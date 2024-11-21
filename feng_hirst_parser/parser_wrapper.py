@@ -34,7 +34,7 @@ def get_output_filepath(args):
     """Returns the path to the output file of the parser."""
     input_filepath = args[0]
     input_filename = os.path.basename(input_filepath)
-    return os.path.join("../texts/results", "{}.tree".format(input_filename))
+    return os.path.join("texts/results", "{}.tree".format(input_filename))
 
 def main():
     parser_stdout_filepath = 'parser.stdout'

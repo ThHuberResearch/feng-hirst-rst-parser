@@ -1,3 +1,4 @@
+import uuid
 from collections import defaultdict
 
 import networkx as nx
@@ -24,13 +25,16 @@ def extract_relation_ngrams(
                 relevant_paths[l] = set()
             for path in paths_all:
                 for i in range(len(path) - l + 1):
-                    relevant_paths[l].append(path[i:i + l])
+                    relevant_paths[l].add(';'.join(str(x) for x in path[i:i + l]))
     relation_counts = {k: defaultdict(int) for k in relevant_paths.keys()}
     for l, paths in relevant_paths.items():
         for path in paths:
+            uuids = path.split(';')
+            path = [uuid.UUID(uuid_, version=4) for uuid_ in uuids]
             ngram = tuple(g.nodes[node]['relation'] for node in path)
             relation_counts[l][ngram] += 1
-    print(relevant_paths)
+    relation_counts = {k: dict(v) for k, v in relation_counts.items()}
+    return relation_counts
 
 
 def extract_metrics(
@@ -48,9 +52,13 @@ def extract_metrics(
 
         relation = data['relation']
         relation_counts[relation] += 1
-
-    return {
+    out = {
         'depth': depth,
         'concept_counts': dict(concept_counts),
         'relation_counts': dict(relation_counts)
     }
+
+    if relation_ngrams is not None:
+        relation_ngram_counts = extract_relation_ngrams(g, relation_ngrams)
+        out['relation_ngram_counts'] = relation_ngram_counts
+    return out

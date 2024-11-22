@@ -35,6 +35,15 @@ class DiscourseParser:
             output_dir: str,
             log_writer=None
     ):
+        """
+        Initialize the parser.
+        :param verbose: Activates verbose mode.
+        :param skip_parsing: Skip parsing, i.e., conduct segmentation only.
+        :param global_features: Perform a second pass of EDU segmentation using global features.
+        :param save_preprocessed_doc: Save preprocessed document into serialized file for future use.
+        :param output_dir: Specify a directory for output files.
+        :param log_writer: Perform logging while parsing.
+        """
         self.verbose = verbose
         self.skip_parsing = skip_parsing
         self.global_features = global_features
@@ -161,7 +170,6 @@ class DiscourseParser:
             raise e
 
         try:
-            g = None
             ''' Step 2: build text-level discourse tree '''
             if self.skip_parsing:
                 outfname = os.path.join(self.output_dir, core_filename + ".edus")
@@ -205,7 +213,6 @@ class DiscourseParser:
                         result[leaf_position] = PARA_END_RE.sub('', edu_str)  # parse tree without escape symbols
 
                     out = pt.pformat()
-                    g = pt.to_networkx()
                     print(f'Output tree building result to {outfname}.')
                     with open(outfname, 'w') as f_o:
                         f_o.write(out)
@@ -217,7 +224,7 @@ class DiscourseParser:
             print(traceback.print_exc())
             raise e
         print('===================================================')
-        return result, g
+        return result
 
 
 def main(options, args):
@@ -285,7 +292,7 @@ def main(options, args):
             print('Parsing %s, progress: %.2f (%d out of %d)' % (filename, i * 100.0 / len(files), i, len(files)))
 
             try:
-                result, _g = parser.parse(filename)
+                result = parser.parse(filename)
                 results.append(result)
 
                 parser.log_writer.write('===================================================')

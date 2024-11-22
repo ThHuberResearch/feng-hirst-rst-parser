@@ -23,7 +23,8 @@ def demo(output_dir: str):
         output_dir=output_dir
     )
     current_file_dir = os.path.dirname(__file__)
-    _, G = parser.parse(os.path.join(current_file_dir, 'example.txt'))
+    pt = parser.parse(os.path.join(current_file_dir, 'example.txt'))
+    G = pt.to_networkx()
     labels = {
         node: f"{data['concept']}\n{data.get('text', '')}"
         for node, data in G.nodes(data=True)

@@ -6,3 +6,4 @@ feng_hirst_parser/texts/results/IMDB
 dist
 build
 *.egg-info
+demo_outputs

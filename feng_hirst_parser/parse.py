@@ -3,23 +3,23 @@ Created on 2014-01-17
 
 @author: Vanessa Wei Feng
 '''
-from .utils import serialize
-from .segmenters.crf_segmenter import CRFSegmenter
-from .treebuilder.build_tree_CRF import CRFTreeBuilder
+from feng_hirst_parser.utils import serialize
+from feng_hirst_parser.segmenters.crf_segmenter import CRFSegmenter
+from feng_hirst_parser.treebuilder.build_tree_CRF import CRFTreeBuilder
 
 from optparse import OptionParser
 from copy import deepcopy
-from .utils import paths
+from feng_hirst_parser.utils import paths
 import os.path
 import re
 import sys
-from .document.doc import Document
+from feng_hirst_parser.document.doc import Document
 import time
 import traceback
 from datetime import datetime
 
-from .logs.log_writer import LogWriter
-from .prep.preprocesser import Preprocesser
+from feng_hirst_parser.logs.log_writer import LogWriter
+from feng_hirst_parser.prep.preprocesser import Preprocesser
 
 PARA_END_RE = re.compile(r' (<P>|<s>)$')
 v = '2.0'

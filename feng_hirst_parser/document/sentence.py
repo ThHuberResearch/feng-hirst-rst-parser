@@ -3,8 +3,8 @@ Created on 2014-01-09
 
 @author: Wei
 '''
-from ..document.base_representation import BaseRepresentation
-from ..document.constituent import Constituent
+from feng_hirst_parser.document.base_representation import BaseRepresentation
+from feng_hirst_parser.document.constituent import Constituent
 
 class Sentence(BaseRepresentation):
     def __init__(self, sent_id, raw_text, doc):

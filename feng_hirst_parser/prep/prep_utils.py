@@ -1,4 +1,4 @@
-from ..trees.lexicalized_tree import LexicalizedTree
+from feng_hirst_parser.trees.lexicalized_tree import LexicalizedTree
 import re
 
 def replace_words(text, word_dic):

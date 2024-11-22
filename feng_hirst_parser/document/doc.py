@@ -3,7 +3,7 @@ Created on Aug 8, 2013
 
 @author: Vanessa
 '''
-from ..document.base_representation import BaseRepresentation
+from feng_hirst_parser.document.base_representation import BaseRepresentation
 
 class Document(BaseRepresentation):
     def __init__(self, 

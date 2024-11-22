@@ -11,8 +11,8 @@ from nltk.grammar import *
 import nltk
 from nltk.tree import Tree
 
-from ..utils import rst_lib
-from ..utils.helpers import get_syntactic_subtrees
+from feng_hirst_parser.utils import rst_lib
+from feng_hirst_parser.utils.helpers import get_syntactic_subtrees
 
 
 class SegmenterFeatureWriter:

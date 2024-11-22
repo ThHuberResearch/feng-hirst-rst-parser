@@ -4,14 +4,14 @@ Created on 2014-01-18
 @author: Wei
 '''
 import subprocess
-from ..utils import paths
-from ..document.sentence import Sentence
-from ..document.token import Token
-from ..trees.lexicalized_tree import LexicalizedTree
-from ..prep import prep_utils
+from feng_hirst_parser.utils import paths
+from feng_hirst_parser.document.sentence import Sentence
+from feng_hirst_parser.document.token import Token
+from feng_hirst_parser.trees.lexicalized_tree import LexicalizedTree
+from feng_hirst_parser.prep import prep_utils
 import os.path
-from ..prep.syntax_parser import SyntaxParser
-from ..document.dependency import Dependency
+from feng_hirst_parser.prep.syntax_parser import SyntaxParser
+from feng_hirst_parser.document.dependency import Dependency
 import re
 
 class Preprocesser:

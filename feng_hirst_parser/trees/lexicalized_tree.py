@@ -1,7 +1,7 @@
 import string
 from nltk.tree import Tree
-from ..trees.parse_tree import ParseTree
-from ..utils.helpers import unescape_penn_special_word
+from feng_hirst_parser.trees.parse_tree import ParseTree
+from feng_hirst_parser.utils.helpers import unescape_penn_special_word
 
 class LexicalizedTree(ParseTree):
     "Extends nltk.tree to support lexical heads"

@@ -1,7 +1,7 @@
 import subprocess
 import os.path
 
-from ..utils.paths import CRFSUITE_PATH
+from feng_hirst_parser.utils.paths import CRFSUITE_PATH
 
 
 class CRFClassifier:

@@ -11,7 +11,7 @@ Created on 2013-02-17
 
 import subprocess
 
-from ..utils import paths
+from feng_hirst_parser.utils import paths
 
 
 class SyntaxParser:

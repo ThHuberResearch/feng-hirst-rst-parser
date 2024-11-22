@@ -1,7 +1,7 @@
 import os.path
 import pickle
 
-from .paths import save_folder
+from feng_hirst_parser.utils.paths import save_folder
 
 SAVE_SUFFIX = ".dat"
 

@@ -1,5 +1,5 @@
 
-from ..trees.parse_tree import ParseTree
+from feng_hirst_parser.trees.parse_tree import ParseTree
 import os.path
 
 class BaseParser:

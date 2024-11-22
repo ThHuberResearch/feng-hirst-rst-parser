@@ -9,10 +9,10 @@ import fnmatch
 import re
 
 from operator import itemgetter
-from ..trees.parse_tree import ParseTree
+from feng_hirst_parser.trees.parse_tree import ParseTree
 from nltk.tree import Tree
 # from nltk.draw.tree import *
-from ..utils.RST_Classes import *
+from feng_hirst_parser.utils.RST_Classes import *
 
 
 def locate(pattern, root=os.getcwd()):

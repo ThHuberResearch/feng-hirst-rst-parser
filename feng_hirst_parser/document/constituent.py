@@ -3,10 +3,10 @@ Created on Aug 8, 2013
 
 @author: Vanessa
 '''
-from ..trees.parse_tree import ParseTree
+from feng_hirst_parser.trees.parse_tree import ParseTree
 import sys
 
-from ..utils.helpers import find_EDU_in_sentence_index, make_new_subtree
+from feng_hirst_parser.utils.helpers import find_EDU_in_sentence_index, make_new_subtree
 
 
 class Constituent:

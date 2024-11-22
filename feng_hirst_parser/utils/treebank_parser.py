@@ -8,7 +8,7 @@ from nltk.tree import *
 from string import *
 import re
 
-from ..utils.yappsrt import Scanner
+from feng_hirst_parser.utils.yappsrt import Scanner
 
 
 class TreebankScanner(Scanner):

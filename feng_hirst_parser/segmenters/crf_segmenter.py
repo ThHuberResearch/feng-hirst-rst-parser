@@ -3,11 +3,11 @@ Created on 2014-01-11
 
 @author: Wei
 '''
-from ..utils.helpers import unescape_penn_special_word
-from ..features.segmenter_feature_writer import SegmenterFeatureWriter
-from ..classifiers.crf_classifier import CRFClassifier
-from ..utils import paths
-from ..document.token import Token
+from feng_hirst_parser.utils.helpers import unescape_penn_special_word
+from feng_hirst_parser.features.segmenter_feature_writer import SegmenterFeatureWriter
+from feng_hirst_parser.classifiers.crf_classifier import CRFClassifier
+from feng_hirst_parser.utils import paths
+from feng_hirst_parser.document.token import Token
 
 class CRFSegmenter:
     def __init__(self, _name = 'crf_segmenter', verbose = False, global_features = False):

@@ -3,9 +3,9 @@ Created on 2013-12-22
 
 @author: Wei
 '''
-from ..utils.helpers import get_syntactic_subtrees, compute_edit_distance
-from ..utils import serialize
-from ..utils.rst_lib import *
+from feng_hirst_parser.utils.helpers import get_syntactic_subtrees, compute_edit_distance
+from feng_hirst_parser.utils import serialize
+from feng_hirst_parser.utils.rst_lib import *
 
 class CRFTreeFeatureWriter:
     def __init__(self, verbose):

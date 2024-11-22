@@ -1,4 +1,4 @@
-from ..parsers.base_parser import BaseParser
+from feng_hirst_parser.parsers.base_parser import BaseParser
 
 
 class IntraSententialParser(BaseParser):

@@ -32,7 +32,7 @@ class DiscourseParser:
             skip_parsing: bool,
             global_features: bool,
             save_preprocessed_doc: bool,
-            output_dir=None,
+            output_dir: str,
             log_writer=None
     ):
         self.verbose = verbose
@@ -40,11 +40,7 @@ class DiscourseParser:
         self.global_features = global_features
         self.save_preprocessed_doc = save_preprocessed_doc
 
-        self.output_dir = os.path.join(paths.OUTPUT_PATH, output_dir if output_dir is not None else '')
-        if not os.path.exists(self.output_dir):
-            print(f'Output directory {self.output_dir} does not exist, creating it now.')
-            os.makedirs(self.output_dir)
-
+        self.output_dir = os.path.join(output_dir)
         self.log_writer = LogWriter(log_writer)
         self.feature_sets = 'gCRF'
 

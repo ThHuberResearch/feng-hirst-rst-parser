@@ -8,11 +8,10 @@ from feng_hirst_parser.trees.extract_metrics import extract_metrics, extract_rel
 import os
 
 
-def demo():
+def demo(output_dir: str):
     verbose = False
     skip_parsing = False
     file_list = []
-    output_dir = None
     global_features = False
     logging = False
     save_preprocessed = True
@@ -20,7 +19,8 @@ def demo():
         verbose,
         skip_parsing,
         global_features,
-        save_preprocessed
+        save_preprocessed,
+        output_dir=output_dir
     )
     current_file_dir = os.path.dirname(__file__)
     _, G = parser.parse(os.path.join(current_file_dir, 'example.txt'))
@@ -38,4 +38,4 @@ def demo():
 
 
 if __name__ == '__main__':
-    demo()
+    demo(os.environ['OUTPUT_DIR'])

@@ -26,7 +26,6 @@ tmp_folder = os.path.join(ROOT_PATH, 'tmp/')
 save_folder = os.path.join(MODEL_PATH, 'serial_data/')
 
 RST_DT_ROOT = os.path.join(ROOT_PATH, 'texts/RST_DT_fixed/')
-OUTPUT_PATH = os.path.join(ROOT_PATH, 'texts/results/')
 DECOREF_PATH = os.path.join(ROOT_PATH, 'texts/dcoref/')
 
 LOGS_PATH = os.path.join(ROOT_PATH, 'logs/')

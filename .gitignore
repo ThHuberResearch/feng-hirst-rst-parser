@@ -1,5 +1,8 @@
 .vscode
 __pycache__
 
-texts/results/IMDB
+feng_hirst_parser/texts/results/IMDB
 .idea
+dist
+build
+*.egg-info

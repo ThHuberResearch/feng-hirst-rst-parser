@@ -3,7 +3,7 @@ from collections import defaultdict
 
 import networkx as nx
 
-from trees.parse_tree import ParseTree
+from ..trees.parse_tree import ParseTree
 
 
 def extract_relation_ngrams(

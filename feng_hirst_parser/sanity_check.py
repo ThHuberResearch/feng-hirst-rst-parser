@@ -6,7 +6,7 @@ Created on Jul 30, 2014
 Updated 2024
 @author: Thomas Huber
 '''
-import paths
+from utils import paths
 import os.path
 import subprocess
 from prep.syntax_parser import SyntaxParser
@@ -18,7 +18,7 @@ test_filename = 'texts/wsj_0607.out'
 
 def check_ssplit():
     cmd = 'perl %s/boundary.pl -d %s/HONORIFICS -i %s' % (
-    paths.SSPLITTER_PATH, paths.SSPLITTER_PATH, os.path.abspath(test_filename))
+        paths.SSPLITTER_PATH, paths.SSPLITTER_PATH, os.path.abspath(test_filename))
     #        print cmd
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     output, errdata = p.communicate()

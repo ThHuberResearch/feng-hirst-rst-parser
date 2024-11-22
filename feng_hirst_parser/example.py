@@ -1,11 +1,11 @@
-import os
-
 import networkx as nx
 from matplotlib import pyplot as plt
 from networkx.drawing.nx_pydot import graphviz_layout
 
 from .parse import DiscourseParser
 from .trees.extract_metrics import extract_metrics, extract_relation_ngrams
+
+import os
 
 
 def demo():

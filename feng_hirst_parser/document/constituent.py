@@ -3,9 +3,11 @@ Created on Aug 8, 2013
 
 @author: Vanessa
 '''
-import utils.utils
-from trees.parse_tree import ParseTree
+from ..trees.parse_tree import ParseTree
 import sys
+
+from ..utils.helpers import find_EDU_in_sentence_index, make_new_subtree
+
 
 class Constituent:
     def __init__(self, parse_subtree, doc, l_start, l_end, r_end, start_sent_id, end_sent_id):
@@ -61,7 +63,7 @@ class Constituent:
         if self.l_start == self.r_end - 1:
             return True
         
-        if utils.utils.find_EDU_in_sentence_index(self.doc.cuts, self.l_start) == utils.utils.find_EDU_in_sentence_index(self.doc.cuts, self.r_end - 1):
+        if find_EDU_in_sentence_index(self.doc.cuts, self.l_start) == find_EDU_in_sentence_index(self.doc.cuts, self.r_end - 1):
             return True
         else:
             return False
@@ -252,7 +254,7 @@ class Constituent:
         assert c.doc == self.doc
         assert self.r_end == c.l_start
         
-        t = utils.utils.make_new_subtree(label, self.parse_subtree, c.parse_subtree, deepcopy = False)
+        t = make_new_subtree(label, self.parse_subtree, c.parse_subtree, deepcopy = False)
         new_c = Constituent(t, self.doc, self.l_start, self.r_end, c.r_end, self.start_sent_id, c.end_sent_id)
         
         new_c.left_child = self

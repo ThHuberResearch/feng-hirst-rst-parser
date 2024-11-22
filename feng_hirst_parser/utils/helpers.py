@@ -1,7 +1,6 @@
 import re
 from nltk.tree import Tree
-from trees.parse_tree import ParseTree
-import utils.rst_lib
+from ..trees.parse_tree import ParseTree
 import string
 
 def replace_words(text, word_dic):

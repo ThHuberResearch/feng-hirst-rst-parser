@@ -3,8 +3,8 @@ Created on Jan 10, 2014
 
 @author: Vanessa
 '''
-from document.constituent import Constituent
-from trees.parse_tree import ParseTree
+from ..document.constituent import Constituent
+from ..trees.parse_tree import ParseTree
 
 class BaseRepresentation:
     def __init__(self):

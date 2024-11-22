@@ -3,13 +3,13 @@ Created on 2014-01-17
 
 @author: Vanessa Wei Feng
 '''
-
+from .utils import serialize
 from .segmenters.crf_segmenter import CRFSegmenter
 from .treebuilder.build_tree_CRF import CRFTreeBuilder
 
 from optparse import OptionParser
 from copy import deepcopy
-import paths
+from .utils import paths
 import os.path
 import re
 import sys
@@ -18,10 +18,8 @@ import time
 import traceback
 from datetime import datetime
 
-from logs.log_writer import LogWriter
-from prep.preprocesser import Preprocesser
-
-import utils.serialize
+from .logs.log_writer import LogWriter
+from .prep.preprocesser import Preprocesser
 
 PARA_END_RE = re.compile(r' (<P>|<s>)$')
 v = '2.0'
@@ -108,7 +106,7 @@ class DiscourseParser:
             serialized_doc_filename = os.path.join(self.output_dir, core_filename + '.doc.ser')
             doc = None
             if os.path.exists(serialized_doc_filename):
-                doc = utils.serialize.load_data(core_filename, self.output_dir, '.doc.ser')
+                doc = serialize.load_data(core_filename, self.output_dir, '.doc.ser')
 
             if doc is None or not doc.preprocessed:
                 preprocess_start = time.time()
@@ -120,7 +118,7 @@ class DiscourseParser:
                 self.log_writer.write(msg)
                 if self.save_preprocessed_doc:
                     print(f'Saved preprocessed document data to {serialized_doc_filename}.')
-                    utils.serialize.save_data(core_filename, doc, self.output_dir, '.doc.ser')
+                    serialize.save_data(core_filename, doc, self.output_dir, '.doc.ser')
             else:
                 print('Loaded saved serialized document data.')
             print('')
@@ -153,7 +151,7 @@ class DiscourseParser:
                     f'Finished segmentation in {seg_end - seg_start:.2f} seconds. Segmented into {len(doc.edus)} EDUs.')
                 if self.save_preprocessed_doc:
                     print(f'Saved segmented document data to {serialized_doc_filename}.')
-                    utils.serialize.save_data(core_filename, doc, self.output_dir, '.doc.ser')
+                    serialize.save_data(core_filename, doc, self.output_dir, '.doc.ser')
             else:
                 print(f'Already segmented into {len(doc.edus)} EDUs.')
             print(' ')
@@ -217,7 +215,7 @@ class DiscourseParser:
                         f_o.write(out)
                 if self.save_preprocessed_doc:
                     print(f'Saved fully processed document data to {serialized_doc_filename}.')
-                    utils.serialize.save_data(core_filename, doc, self.output_dir, '.doc.ser')
+                    serialize.save_data(core_filename, doc, self.output_dir, '.doc.ser')
             print(' ')
         except Exception as e:
             print(traceback.print_exc())

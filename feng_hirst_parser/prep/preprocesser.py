@@ -4,14 +4,14 @@ Created on 2014-01-18
 @author: Wei
 '''
 import subprocess
-import paths
-from document.sentence import Sentence
-from document.token import Token
-from trees.lexicalized_tree import LexicalizedTree
-from prep import prep_utils
+from ..utils import paths
+from ..document.sentence import Sentence
+from ..document.token import Token
+from ..trees.lexicalized_tree import LexicalizedTree
+from ..prep import prep_utils
 import os.path
-from prep.syntax_parser import SyntaxParser
-from document.dependency import Dependency
+from ..prep.syntax_parser import SyntaxParser
+from ..document.dependency import Dependency
 import re
 
 class Preprocesser:
@@ -117,7 +117,8 @@ class Preprocesser:
     def sentence_splitting(self, raw_filename, doc):
         doc.sentences = []
         
-        cmd = 'perl %s/boundary.pl -d %s/HONORIFICS -i %s' % (paths.SSPLITTER_PATH, paths.SSPLITTER_PATH, os.path.abspath(raw_filename))
+        cmd = 'perl %s/boundary.pl -d %s/HONORIFICS -i %s' % (
+        paths.SSPLITTER_PATH, paths.SSPLITTER_PATH, os.path.abspath(raw_filename))
 
         p = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE, shell = True)
         output, errdata = p.communicate()

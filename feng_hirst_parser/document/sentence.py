@@ -3,9 +3,8 @@ Created on 2014-01-09
 
 @author: Wei
 '''
-import utils.rst_lib
-from document.base_representation import BaseRepresentation
-from document.constituent import Constituent
+from ..document.base_representation import BaseRepresentation
+from ..document.constituent import Constituent
 
 class Sentence(BaseRepresentation):
     def __init__(self, sent_id, raw_text, doc):

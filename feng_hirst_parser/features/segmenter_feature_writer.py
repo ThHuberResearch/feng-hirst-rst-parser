@@ -7,10 +7,12 @@ Updated 2024
 @author: Thomas Huber
 '''
 
-import utils.rst_lib
 from nltk.grammar import *
 import nltk
 from nltk.tree import Tree
+
+from ..utils import rst_lib
+from ..utils.helpers import get_syntactic_subtrees
 
 
 class SegmenterFeatureWriter:
@@ -67,7 +69,7 @@ class SegmenterFeatureWriter:
         l_treepos = token1.get_treepos()
         r_treepos = token2.get_treepos()
 
-        common_ancestor_pos = utils.rst_lib.common_ancestor(l_treepos, r_treepos)
+        common_ancestor_pos = rst_lib.common_ancestor(l_treepos, r_treepos)
 
         dist_ancestor_l = len(l_treepos) - len(common_ancestor_pos)
         dist_ancestor_r = len(r_treepos) - len(common_ancestor_pos)
@@ -124,7 +126,7 @@ class SegmenterFeatureWriter:
         if (start, end) in self.cached_subtrees:
             subtrees = self.cached_subtrees[(start, end)]
         else:
-            subtrees = utils.utils.get_syntactic_subtrees(tree, start, end)
+            subtrees = get_syntactic_subtrees(tree, start, end)
             self.cached_subtrees[(start, end)] = subtrees
 
         self.features.add('Subtrees_to_Neighbouring_Boundary=%d_Unit%d@%d' % (len(subtrees), unit, position))

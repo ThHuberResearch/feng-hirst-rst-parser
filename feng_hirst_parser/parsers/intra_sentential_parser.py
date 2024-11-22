@@ -1,9 +1,5 @@
-from parsers.base_parser import BaseParser
-from trees.parse_tree import ParseTree
-import utils.utils
-import random
-import os.path
-import paths
+from ..parsers.base_parser import BaseParser
+
 
 class IntraSententialParser(BaseParser):
     def __init__(self, name = 'IntraParser', verbose = False, window_size = 3):

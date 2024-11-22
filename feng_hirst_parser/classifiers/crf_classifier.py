@@ -1,6 +1,8 @@
 import subprocess
-import paths
 import os.path
+
+from ..utils.paths import CRFSUITE_PATH
+
 
 class CRFClassifier:
     def __init__(self, name, model_type, model_path, model_file, verbose):
@@ -15,8 +17,8 @@ class CRFClassifier:
             raise OSError('Could not create classifier subprocess')
         
         
-        self.classifier_cmd = '%s/crfsuite-stdin tag -pi -m %s -' % (paths.CRFSUITE_PATH, 
-							 os.path.join(self.model_path, self.model_fname))
+        self.classifier_cmd = '%s/crfsuite-stdin tag -pi -m %s -' % (CRFSUITE_PATH,
+                                                                     os.path.join(self.model_path, self.model_fname))
 #        print self.classifier_cmd
         self.classifier = subprocess.Popen(self.classifier_cmd, shell = True, stdin = subprocess.PIPE, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
         

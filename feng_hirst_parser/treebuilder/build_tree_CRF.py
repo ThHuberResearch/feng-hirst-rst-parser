@@ -1,11 +1,11 @@
-from trees.parse_tree import ParseTree
-import paths
+from ..trees.parse_tree import ParseTree
+from ..utils import paths
 
-from parsers.intra_sentential_parser import IntraSententialParser
-from parsers.multi_sentential_parser import MultiSententialParser
-from features.tree_feature_writer import CRFTreeFeatureWriter
+from ..parsers.intra_sentential_parser import IntraSententialParser
+from ..parsers.multi_sentential_parser import MultiSententialParser
+from ..features.tree_feature_writer import CRFTreeFeatureWriter
 
-from classifiers.crf_classifier import CRFClassifier
+from ..classifiers.crf_classifier import CRFClassifier
 
 
 class CRFTreeBuilder:

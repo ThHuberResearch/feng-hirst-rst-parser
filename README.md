@@ -1,3 +1,7 @@
+## Installation
+
+`pip install feng-hirst-rst-parser`
+
 ## README.md and README_original.md
 
 This project is a fork of an update of the original Feng-Hirst RST parser repo. The original README.md is included as
@@ -16,7 +20,7 @@ This README.md will focus on the current version and does not include instructio
 ## Usage
 
 ### Example
-See [`example.py`](feng_hirst_parser/example.py) for a very simple example.
+See [`example.py`](feng_hirst_parser/example.py) for a very simple example. Note that this requires both `matplotlib` and `pydot` to run. The plotting functionality is not required to use the parser, hence these packages are not listed as requirements, and you will have to install them yourself.
 
 
 ### More detailed usage

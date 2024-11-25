@@ -97,9 +97,31 @@ class DiscourseParser:
         if self.treebuilder is not None:
             self.treebuilder.unload()
 
-    def parse(self, filename):
-        result = None
+    def parse_from_text(
+            self,
+            text: str,
+            identifier: str
+    ):
+        serialized_doc_filename = os.path.join(self.output_dir, identifier + '.doc.ser')
+        doc = None
+        if os.path.exists(serialized_doc_filename):
+            doc = serialize.load_data(identifier, self.output_dir, '.doc.ser')
+        if doc is None or not doc.preprocessed:
+            preprocess_start = time.time()
+            doc = Document()
+            doc.preprocess_from_text(text, self.preprocesser)
+            preprocess_end = time.time()
+            msg = f'Finished preprocessing in {preprocess_end - preprocess_start:.2f} seconds.'
+            print(msg)
+            self.log_writer.write(msg)
+            if self.save_preprocessed_doc:
+                print(f'Saved preprocessed document data to {serialized_doc_filename}.')
+                serialize.save_data(identifier, doc, self.output_dir, '.doc.ser')
+        else:
+            print('Loaded saved serialized document data.')
+        return self.process_parsed_doc(doc, identifier, serialized_doc_filename)
 
+    def parse(self, filename):
         if not os.path.exists(filename):
             print(f'{filename} does not exist.')
             return
@@ -132,6 +154,10 @@ class DiscourseParser:
             print(traceback.print_exc())
             raise e
 
+        return self.process_parsed_doc(doc, core_filename, serialized_doc_filename)
+
+    def process_parsed_doc(self, doc, core_filename, serialized_doc_filename):
+        result = None
         try:
             if not doc.segmented:
                 seg_start = time.time()

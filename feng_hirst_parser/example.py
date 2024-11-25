@@ -23,19 +23,25 @@ def demo(output_dir: str):
         output_dir=output_dir
     )
     current_file_dir = os.path.dirname(__file__)
-    pt = parser.parse(os.path.join(current_file_dir, 'example.txt'))
-    G = pt.to_networkx()
-    labels = {
-        node: f"{data['concept']}\n{data.get('text', '')}"
-        for node, data in G.nodes(data=True)
-    }
-    plt.figure(figsize=(15, 12))
-    pos = graphviz_layout(G, prog="dot")
-    nx.draw(G, pos, with_labels=True, labels=labels, node_size=3000, font_size=10)
-    plt.show()
+    pt1 = parser.parse(os.path.join(current_file_dir, 'example.txt'))
 
-    metrics = extract_metrics(G, relation_ngrams=[(1, 2), (3, 4)])
-    print(metrics)
+    with open(os.path.join(current_file_dir, 'example.txt'), 'r') as file:
+        text = file.read()
+    pt2 = parser.parse_from_text(text, 'simple_example')
+
+    for pt in [pt1, pt2]:
+        G = pt.to_networkx()
+        labels = {
+            node: f"{data['concept']}\n{data.get('text', '')}"
+            for node, data in G.nodes(data=True)
+        }
+        plt.figure(figsize=(15, 12))
+        pos = graphviz_layout(G, prog="dot")
+        nx.draw(G, pos, with_labels=True, labels=labels, node_size=3000, font_size=10)
+        plt.show()
+
+        metrics = extract_metrics(G, relation_ngrams=[(1, 2), (3, 4)])
+        print(metrics)
 
 
 if __name__ == '__main__':

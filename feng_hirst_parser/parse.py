@@ -237,6 +237,7 @@ class DiscourseParser:
                     self.log_writer.write(msg)
 
                     for i in range(len(doc.edus)):
+                        doc.edus[i] = [edu.decode('utf-8') if isinstance(edu, bytes) else edu for edu in doc.edus]
                         edu_str = ' '.join(doc.edus[i])
                         leaf_position = pt.leaf_treeposition(i)
                         pt[leaf_position] = f'!{edu_str}!'  # parse tree with escape symbols

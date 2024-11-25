@@ -125,9 +125,10 @@ class DiscourseParser:
                 serialize.save_data(identifier, doc, self.output_dir, '.doc.ser')
         else:
             print('Loaded saved serialized document data.')
+        out = self.process_parsed_doc(doc, identifier, serialized_doc_filename)
         if len(doc.edus) == 1:
             warnings.warn('WARNING: Only one EDU found. No tree can be built - be careful when handling this case!')
-        return self.process_parsed_doc(doc, identifier, serialized_doc_filename)
+        return out
 
     def parse(self, filename):
         if not os.path.exists(filename):

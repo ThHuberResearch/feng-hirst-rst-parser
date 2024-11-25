@@ -8,7 +8,7 @@ except FileNotFoundError:
 
 setup(
     name="feng-hirst-rst-parser",
-    version="0.1.0",
+    version="0.1.1",
     author="Thomas Huber",
     author_email="thomas.huber@unisg.ch",
     description="Implementation of the Feng-Hirst RST Discourse Parser",

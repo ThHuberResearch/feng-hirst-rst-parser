@@ -102,6 +102,10 @@ class DiscourseParser:
             text: str,
             identifier: str
     ):
+        try:
+            import spacy
+        except ImportError:
+            raise ImportError('Please install spacy to use this function.\nDownload the following model as well: python -m spacy download en_core_web_sm')
         serialized_doc_filename = os.path.join(self.output_dir, identifier + '.doc.ser')
         doc = None
         if os.path.exists(serialized_doc_filename):

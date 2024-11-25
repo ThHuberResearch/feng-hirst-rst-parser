@@ -3,6 +3,8 @@ Created on 2014-01-17
 
 @author: Vanessa Wei Feng
 '''
+import warnings
+
 from feng_hirst_parser.utils import serialize
 from feng_hirst_parser.segmenters.crf_segmenter import CRFSegmenter
 from feng_hirst_parser.treebuilder.build_tree_CRF import CRFTreeBuilder
@@ -123,6 +125,8 @@ class DiscourseParser:
                 serialize.save_data(identifier, doc, self.output_dir, '.doc.ser')
         else:
             print('Loaded saved serialized document data.')
+        if len(doc.edus) == 1:
+            warnings.warn('WARNING: Only one EDU found. No tree can be built - be careful when handling this case!')
         return self.process_parsed_doc(doc, identifier, serialized_doc_filename)
 
     def parse(self, filename):

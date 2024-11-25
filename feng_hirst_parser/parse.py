@@ -239,7 +239,12 @@ class DiscourseParser:
                     for i in range(len(doc.edus)):
                         doc.edus[i] = [edu.decode('utf-8') if isinstance(edu, bytes) else edu for edu in doc.edus[i]]
                         edu_str = ' '.join(doc.edus[i])
-                        leaf_position = pt.leaf_treeposition(i)
+                        try:
+                            leaf_position = pt.leaf_treeposition(i)
+                        except AttributeError:
+                            leaf_position = 0
+                            pt = pt[0]
+                            result = deepcopy(pt)
                         pt[leaf_position] = f'!{edu_str}!'  # parse tree with escape symbols
                         result[leaf_position] = PARA_END_RE.sub('', edu_str)  # parse tree without escape symbols
 

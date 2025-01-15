@@ -20,8 +20,7 @@ class CRFClassifier:
         self.classifier_cmd = '%s/crfsuite-stdin tag -pi -m %s -' % (CRFSUITE_PATH,
                                                                      os.path.join(self.model_path, self.model_fname))
         #        print self.classifier_cmd
-        self.classifier = subprocess.Popen(self.classifier_cmd, shell=True, stdin=subprocess.PIPE,
-                                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        self.classifier = self._create_classifier()
 
         if self.classifier.poll():
             raise OSError(
@@ -56,26 +55,29 @@ class CRFClassifier:
         predictions : list of (str, float) tuples
             list of predition tuples (label, probability)
         """
-        try:
-            self.classifier.stdin.write(('\n'.join(vectors) + "\n\n").encode())
-            self.classifier.stdin.flush()
+        self.classifier.stdin.write(('\n'.join(vectors) + "\n\n").encode())
+        self.classifier.stdin.close()
 
-            stdout, _ = self.classifier.communicate()
-            lines = stdout.decode('utf-8').strip().split('\n')
+        lines = [l.decode('utf-8') for l in self.classifier.stdout.readlines()]
 
-            predictions = []
-            for line in lines[1:]:
-                line = line.strip()
-                if line:
-                    label, prob = line.split(':')
-                    predictions.append((label, float(prob)))
+        if self.classifier.poll():
+            raise OSError('crf_classifier subprocess died')
 
-            seq_prob = float(lines[0].split('\t')[1])
-            return seq_prob, predictions
-        except Exception as e:
-            raise RuntimeError(f"Failed to classify vectors: {e}")
-        finally:
-            self.close_classifier()
+        predictions = []
+        for line in lines[1:]:
+            line = line.strip()
+            if line != '':
+                fields = line.split(':')
+                label = fields[0]
+                prob = float(fields[1])
+                predictions.append((label, prob))
+
+        seq_prob = float(lines[0].split('\t')[1])
+
+        # re-create classifier (because we had to close STDIN earlier)
+        self.close_classifier()
+        self.classifier = self._create_classifier()
+        return seq_prob, predictions
 
     def close_classifier(self):
         if self.classifier:

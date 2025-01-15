@@ -11,21 +11,36 @@ class CRFClassifier:
         self.type = model_type
         self.model_fname = model_file
         self.model_path = model_path
-        
+
         if not os.path.exists(os.path.join(self.model_path, self.model_fname)):
-            print ('The model path %s for CRF classifier %s does not exist.' % (os.path.join(self.model_path, self.model_fname), name))
+            print('The model path %s for CRF classifier %s does not exist.' % (
+                os.path.join(self.model_path, self.model_fname), name))
             raise OSError('Could not create classifier subprocess')
-        
-        
+
         self.classifier_cmd = '%s/crfsuite-stdin tag -pi -m %s -' % (CRFSUITE_PATH,
                                                                      os.path.join(self.model_path, self.model_fname))
-#        print self.classifier_cmd
-        self.classifier = subprocess.Popen(self.classifier_cmd, shell = True, stdin = subprocess.PIPE, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-        
+        #        print self.classifier_cmd
+        self.classifier = subprocess.Popen(self.classifier_cmd, shell=True, stdin=subprocess.PIPE,
+                                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
         if self.classifier.poll():
-            raise OSError('Could not create classifier subprocess, with error info:\n%s' % self.classifier.stderr.readline())
-        
-        #self.cnt = 0
+            raise OSError(
+                'Could not create classifier subprocess, with error info:\n%s' % self.classifier.stderr.readline())
+
+        # self.cnt = 0
+
+    def _create_classifier(self):
+        classifier = subprocess.Popen(
+            self.classifier_cmd,
+            shell=True,
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
+        if classifier.poll() is not None:
+            error = classifier.stderr.readline().decode('utf-8')
+            raise OSError(f'Could not create classifier subprocess, with error info:\n{error}')
+        return classifier
 
     def classify(self, vectors):
         """
@@ -41,41 +56,48 @@ class CRFClassifier:
         predictions : list of (str, float) tuples
             list of predition tuples (label, probability)
         """
-        self.classifier.stdin.write(('\n'.join(vectors) + "\n\n").encode())
-        self.classifier.stdin.close()
+        try:
+            self.classifier.stdin.write(('\n'.join(vectors) + "\n\n").encode())
+            self.classifier.stdin.flush()
 
-        lines = [l.decode('utf-8') for l in self.classifier.stdout.readlines()]
-        
-        if self.classifier.poll():
-            raise OSError('crf_classifier subprocess died')
-        
-        predictions = []
-        for line in lines[1 : ]:
-            line = line.strip()
-            if line != '':
-                fields = line.split(':')
-                label = fields[0]
-                prob = float(fields[1])
-                predictions.append((label, prob))
-        
-        seq_prob = float(lines[0].split('\t')[1])
+            stdout, _ = self.classifier.communicate()
+            lines = stdout.decode('utf-8').strip().split('\n')
 
-        # re-create classifier (because we had to close STDIN earlier)
-        self.classifier = subprocess.Popen(self.classifier_cmd, shell = True, stdin = subprocess.PIPE, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-        return seq_prob, predictions
-    
+            predictions = []
+            for line in lines[1:]:
+                line = line.strip()
+                if line:
+                    label, prob = line.split(':')
+                    predictions.append((label, float(prob)))
+
+            seq_prob = float(lines[0].split('\t')[1])
+            return seq_prob, predictions
+        except Exception as e:
+            raise RuntimeError(f"Failed to classify vectors: {e}")
+        finally:
+            self.close_classifier()
+
+    def close_classifier(self):
+        if self.classifier:
+            self.classifier.stdin.close()
+            self.classifier.stdout.close()
+            self.classifier.stderr.close()
+            self.classifier.terminate()
+            self.classifier.wait()
+            self.classifier = None
 
     def poll(self):
         """
         Checks that the classifier processes are still alive
         """
-        if self.classifier is None:
-            return True
-        else:
-            return self.classifier.poll() != None
-        
-    
+        return self.classifier is None or self.classifier.poll() is not None
+
     def unload(self):
         if self.classifier and not self.poll():
             self.classifier.stdin.write(b'\n')
-            print ('Successfully unloaded %s' % self.name)
+            self.classifier.stdin.flush()
+            print(f'Successfully unloaded {self.name}')
+        self.close_classifier()
+
+    def __del__(self):
+        self.close_classifier()
